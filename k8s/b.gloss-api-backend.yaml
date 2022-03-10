@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gloss-api-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: gloss-api-backend
+  template:
+    metadata:
+      labels:
+        component: gloss-api-backend
+    spec:
+      containers:
+        - name: backend
+          image: docker.io/mstoews/gloss-api-backend:v1.1.18
+          resources:
+            requests:
+             memory: "256Mi"
+             cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+          - containerPort: 3010
+          envFrom:
+            - configMapRef:
+                name: gloss-api-backend-config

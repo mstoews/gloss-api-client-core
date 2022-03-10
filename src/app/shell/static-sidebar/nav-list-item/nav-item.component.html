@@ -1,0 +1,11 @@
+<li class="side-nav__item">
+  <a mat-list-item [ngStyle]="{'padding-left': (depth * 40) + 'px'}" (click)="onItemSelected(item)"
+    [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
+    <mat-icon class="side-nav__icon" [svgIcon]=item.iconName > </mat-icon>
+    <span>{{item.displayName}}</span>
+  </a>
+</li>
+<div *ngIf="expanded">
+  <app-nav-list-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1">
+  </app-nav-list-item>
+</div>

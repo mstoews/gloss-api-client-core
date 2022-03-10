@@ -1,0 +1,24 @@
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-data-grid *ngIf="status | async as rows"
+    keyExpr="status"
+    [dataSource]="rows"
+    [showBorders]="false"
+    [focusedRowEnabled]="true"
+    [focusedRowIndex]="0"
+    [columnAutoWidth]="true">
+    <dxo-group-panel   [visible]="true"></dxo-group-panel>
+    <dxo-paging [pageSize]="20"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+    <dxo-filter-row [visible]="false"></dxo-filter-row>
+
+    <dxi-column dataField="status" caption="Status"  [hidingPriority]="2"> </dxi-column>
+    <dxi-column dataField="description" caption="Description" [hidingPriority]="1"> </dxi-column>
+    <dxi-column dataField="updatedte" caption="Update Date" [hidingPriority]="1"> </dxi-column>
+    <dxi-column dataField="updateusr" caption="Update User" [hidingPriority]="1"> </dxi-column>
+  
+  </dx-data-grid>
+  </div>
+</div>
+
+

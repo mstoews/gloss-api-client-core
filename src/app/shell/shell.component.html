@@ -1,0 +1,66 @@
+<div class="flex-container">
+  <header class="flex-header">
+    <mat-toolbar id="background" color="primary">
+      <button class="menu-button"
+        [ngClass]="{'clicked': isClicked}" type="button"
+        (click)="onToggleMenu()"
+        mat-icon-button
+        matTooltip="Toggle Menu"
+        aria-label="Toggle"
+      >
+        <mat-icon
+          id="icon"
+          (click)="doAnimate()"
+          [ngClass]="{ animate: doAnimation }"
+          class="side-nav__icon"
+          [svgIcon]="'heroicons_outline:chevron-double-right'"
+        ></mat-icon>
+      </button>
+      <span class="logo" routerLink="/server"></span>
+      <span class="fill-space"> POST TRADE FAST START: v1.20.01</span>
+      <span> {{ envConnected }}</span>
+      <div *ngIf="!(isHandset$ | async)">
+        <button mat-button (click)="logout()">🔑 LOGOUT</button>
+      </div>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="A Menu">
+        <mat-icon [svgIcon]="'heroicons_outline:menu'"></mat-icon>
+      </button>
+      <mat-menu class="drop-menu" #menu="matMenu">
+        <a mat-menu-item routerLink="/kanban">
+          <mat-icon [svgIcon]="'heroicons_outline:calendar'"></mat-icon>
+          <span>KANBAN</span>
+        </a>
+        <a mat-menu-item routerLink="/graphql">
+          <mat-icon [svgIcon]="'heroicons_outline:server'">
+          </mat-icon>
+          <span>SERVER</span>
+        </a>
+        <a mat-menu-item routerLink="/user/createaccount">
+          <mat-icon [svgIcon]="'heroicons_outline:user-add'">
+          </mat-icon>
+          <span>ACCOUNT MANAGEMENT</span>
+        </a>
+        <a mat-menu-item routerLink="/user/userlist">
+          <mat-icon [svgIcon]="'heroicons_outline:users'">
+          </mat-icon>
+          <span>USER LIST</span>
+        </a>
+      </mat-menu>
+    </mat-toolbar>
+  </header>
+  <mat-sidenav-container class="mat-sidenav-container main">
+    <mat-sidenav  
+      class="flex-nav"
+      #drawer
+      mode="side"
+      opened
+      [@onMainContentChange]="onSideNavChange ? 'open' : 'close'">
+      <app-static-sidebar></app-static-sidebar>
+    </mat-sidenav>
+    <main class="flex-main">
+      <article class="flex-article">
+        <ng-content></ng-content>
+      </article>
+    </main>
+  </mat-sidenav-container>
+</div>

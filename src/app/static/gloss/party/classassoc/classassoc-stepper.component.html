@@ -1,0 +1,860 @@
+<div *ngIf="loading == true">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="loading == false">
+  <form [formGroup]="formGroup">
+    <mat-accordion multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            ACM Settlement Instructions
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>COBC - Company to Bureau Client Association</mat-label>
+          <mat-select formControlName="glossCodeCOBC5043Configured" (selectionChange)="updateCOBCassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes5043" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="COBC5043applied" (selectionChange)="updateCOBCassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Controls Generation of ACM instructions from Glosss to ACM using Japan style settings. Always set this for
+        Japan clients.
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            BNPP Statements
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>CSBC - Bureau Client-Stmt Balance Codes</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesCSBC1407Configured" multiple (selectionChange)="updateCSBCassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes1407" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="CSBC1407applied" (selectionChange)="updateCSBCassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Client statement - specific logic for BNPP
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>CSCC -Bureau Client-Stmt Column Code</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodeCSCC1442Configured" (selectionChange)="updateCSCCassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes1442" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="CSCC1442applied" (selectionChange)="updateCSCCassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Client statement - specific logic for BNPP
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>CSIP -Bureau Client-Stmt Interested Party</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesCSIP1Configured" multiple (selectionChange)="updateCSIPassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes1" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="CSIP1applied" (selectionChange)="updateCSIPassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Client statement - specific logic for BNPP
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>CSNC -Bureau Client-Stmt Narrative Code</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodeCSNC1205Configured" (selectionChange)="updateCSNCassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes1205" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="CSNC1205applied" (selectionChange)="updateCSNCassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Client statement - specific logic for BNPP
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            BOJ Settlement
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>BITP - BOJ Instruction via BOJPS</mat-label>
+          <mat-select formControlName="glossCodeBITP1836Configured" (selectionChange)="updateBITPassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes1836" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="BITP1836applied" (selectionChange)="updateBITPassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        ACM JGB clearing related - if ACM is being used for JGB clearing and BOJPS is connected, then set to "Y".
+        Otherwise, set "N".
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Clearing
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>CLDG -Clearing Record Data</mat-label>
+          <mat-select formControlName="glossCodesCLDG2279Configured" multiple (selectionChange)="updateCLDGassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes2279" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="CLDG2279applied" (selectionChange)="updateCLDGassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        ACM HK - only gather charges with charge code as set in sub-code
+        e.g. COC1 charge included on instruction to ACM.
+        JLL1 - For Zaimu Kaikei.
+        TD1 - Company Code to Sub-Ledger code mapping.
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Cost of Carry Processing
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>COCP - Cost of Carry Process</mat-label>
+          <mat-select formControlName="glossCodeCOCP2279Configured" (selectionChange)="updateCOCPassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes2279" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="COCP2279applied" (selectionChange)="updateCOCPassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Setting to control cost of carry processing. Not for Japan clients
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Crest Default ID
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>DPID - Default participant ID</mat-label>
+          <mat-select formControlName="glossCodeDPID1200Configured" (selectionChange)="updateDPIDassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes1200" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="DPID1200applied" (selectionChange)="updateDPIDassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        C199 CREST amendment/cancellation logic for new structured DBVs
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Euroclear Settlement
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>CSDN - Company/Settle Terms Daylight Indicator not </mat-label>
+          <mat-select formControlName="glossCodesCSDN1253Configured" multiple (selectionChange)="updateCSDNassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes1253" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="CSDN1253applied" (selectionChange)="updateCSDNassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Controls tag 72 on SWIFT msgs (daylight processing indicator) - Euroclear related
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Futures & Options Expiry Processing
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>SSCM - Suppress Generate Stock Cash Movements</mat-label>
+          <mat-select formControlName="glossCodesSSCM5101Configured" multiple (selectionChange)="updateSSCMassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes5101" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="SSCM5101applied" (selectionChange)="updateSSCMassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Don't generate physical delivery transactions
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Futures & Options Processing
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>UPUI - Underlying Price - Underlying Instrument</mat-label>
+          <mat-select formControlName="glossCodeUPUI31Configured" (selectionChange)="updateUPUIassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes31" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="UPUI31applied" (selectionChange)="updateUPUIassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        116 - Enhance Gloss Trade and Position extracts for ETDs (Part 1 of 2) to cover Position and P&L extracts.
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Japan Statement Monthly Control
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>SDMF -Statement Due Date Offset Monthly</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodeSDMF2537Configured" (selectionChange)="updateSDMFassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes2537" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="SDMF2537applied" (selectionChange)="updateSDMFassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Controls statement generation off-set for Month End statement generation
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>SGMF - Statement Grace Period Date Offset Monthly</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodeSGMF2537Configured" (selectionChange)="updateSGMFassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes2537" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="SGMF2537applied" (selectionChange)="updateSGMFassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Controls statement generation off-set for Month End statement generation
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            JLL Safekeeping Calc
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>MMWT - Movement matching without trade type</mat-label>
+          <mat-select formControlName="glossCodeMMWT2559Configured" (selectionChange)="updateMMWTassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes2559" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="MMWT2559applied" (selectionChange)="updateMMWTassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Safekeeping JLL LIFO position calculation
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            JSCC via BOJPS
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>JCCC - Japan Company and Clearing Corp Assoc</mat-label>
+          <mat-select formControlName="glossCodeJCCC2919Configured">
+            <mat-option disabled *ngFor="let glossCode of glossCodes2919" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="JCCC2919applied" (selectionChange)="updateJCCCassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Japan Sec Clearing Corp via BOJPS - Controls settlement instruction selection on the trades for PSMS Non-JSCC
+        trades. Should be set for clients using BOJPS.
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            MTM Valuation Adjustments
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>GLDO - General Ledger Date Offset</mat-label>
+          <mat-select formControlName="glossCodeGLDO1211Configured" (selectionChange)="updateGLDOassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes1211" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="GLDO1211applied" (selectionChange)="updateGLDOassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Foundation project: Unrealised MTM for Valuation Adjustments
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            P&L Calcs
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>PPEX - Processing Plan Exclusion</mat-label>
+          <mat-select formControlName="glossCodePPEX1829Configured" (selectionChange)="updatePPEXassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes1829" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="PPEX1829applied" (selectionChange)="updatePPEXassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Don't run FIFO P&L on securities transactions
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Securities of Interest
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>SOI - Securities of Interest</mat-label>
+          <mat-select formControlName="glossCodeSOI3048Configured" (selectionChange)="updateSOIassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes3048" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="SOI3048applied" (selectionChange)="updateSOIassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Controls generation of securities of interest file to APTP - Socgen specific
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Stock Loan Business
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>CMVT -Create Market Value Transaction</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesCMVT1200Configured" multiple>
+                <mat-option disabled *ngFor="let glossCode of glossCodes1200" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="CMVT1200applied" (selectionChange)="updateCMVTassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Create market valuation transactions - for use in Accounting - (MEMVGEN) Month End Market Valuation
+            Transaction generation job related
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>PPRV - Open Event presence for revalution validation</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesPPRV1200Configured" multiple (selectionChange)="updatePPRVassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes1200" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="PPRV1200applied" (selectionChange)="updatePPRVassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Swift Messaging
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>DDAC - Drop 90a DAAC</mat-label>
+          <mat-select formControlName="glossCodesDDAC1503Configured" multiple (selectionChange)="updateDDACassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes1503" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="DDAC1503applied" (selectionChange)="updateDDACassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        SWIFT messaging - supppress 90A:DACC tag (accrued days) if this is set
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Transaction Archiving
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>CPDT -Company Purge Dates</mat-label>
+          <mat-select formControlName="glossCodesCPDT1259Configured" multiple>
+            <mat-option disabled *ngFor="let glossCode of glossCodes1259" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="CPDT1259applied" (selectionChange)="updateCPDTassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Trade Archiving job
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Instruction Msg Control
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>CRIT - Critical amendment fields</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesCRIT1102Configured" multiple (selectionChange)="updateCRITassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes1102" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="CRIT1102applied" (selectionChange)="updateCRITassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Don't create an error for netted trades if the company is set up for CRIT(special critical amend logic)
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            CA Processing Control
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>ECCL - Enable CA Claim Notices (Main Code as company)</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesECCLM2278Configured" multiple
+                (selectionChange)="updateECCLMassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes2278" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="ECCLM2278applied"
+                (selectionChange)="updateECCLMassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Controls if CA Claim Notification transactions should be generated by the CA module.
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>ECCL - Enable CA Claim Notices (Sub Code as company)</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesECCLS2278Configured" multiple
+                (selectionChange)="updateECCLSassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes2278" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="ECCLS2278applied"
+                (selectionChange)="updateECCLSassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Controls if CA Claim Notification transactions should be generated by the CA module.
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            SBL Processing Control
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>FINR - Final Return Indicator Not</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodeFINR2559Configured" (selectionChange)="updateFINRassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes2559" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="FINR2559applied" (selectionChange)="updateFINRassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            This indicator is to be set on the entity level, which permits an SBL to be fully returned on a partial
+            return,i.e. allow the generation of an auto close event to close the SBL contract. This is a PP level
+            control.
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            FRN Processing Control
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>FRNM - No Enrichment Failure on missing FRN Fixing Rate</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesFRNM2278Configured" multiple (selectionChange)="updateFRNMassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes2278" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="FRNM2278applied" (selectionChange)="updateFRNMassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Trade Enrichment will not raise an exception on Accrued Days Calculation for the FRN trades when reference
+            index is missing a coupon rate for the switched on company.
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            CREST Instruction Msg Control
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>SUTP - Suppress Trade Price</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesSUTP1501Configured" multiple (selectionChange)="updateSUTPassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes1501" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="SUTP1501applied" (selectionChange)="updateSUTPassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Controls if Trade Price tag is suppressed for the selected market instructions. Do not gather trade price
+            if the class assoc SUTP exists.
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>SUTR - Suppress Trade Registrar</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesSUTR1501Configured" multiple (selectionChange)="updateSUTRassoc()">
+                <mat-option *ngFor="let glossCode of glossCodes1501" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="SUTR1501applied" (selectionChange)="updateSUTRassoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Controls if Country of Register is suppressed for the selected market instructions. Get the primary
+            instruments country of registration which is stored as a classification against the instrument.
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            TFLG - Transaction Flags
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>TFLG - Transaction Flags (Custody Client)</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesTFLG2322Configured" multiple
+                (selectionChange)="updateTFLG2322assoc()">
+                <mat-option *ngFor="let glossCode of glossCodes1200" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="TFLG2322applied"
+                (selectionChange)="updateTFLG2322assoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Transaction flag for main_class_wil - 2322 and sub codes from 1200(Trade Type)
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>TFLG - Transaction Flags (Associated Company)</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="glossCodesTFLG2524Configured" multiple
+                (selectionChange)="updateTFLG2524assoc()">
+                <mat-option *ngFor="let glossCode of glossCodes1200" [value]="glossCode.p2000Code">
+                  {{glossCode.codeShortDesc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>applied</mat-label>
+              <mat-select placeholder="applied" formControlName="TFLG2524applied"
+                (selectionChange)="updateTFLG2524assoc()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+                  {{code.p2000Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            Transaction flag for main_class_wil - 2524 and sub codes from 1200(Trade Type)
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Others
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>AFPR - Allow Fully Returning Events</mat-label>
+          <mat-select formControlName="glossCodeAFPR2559Configured" (selectionChange)="updateAFPRassoc()">
+            <mat-option *ngFor="let glossCode of glossCodes2559" [value]="glossCode.p2000Code">
+              {{glossCode.codeShortDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>applied</mat-label>
+          <mat-select placeholder="applied" formControlName="AFPR2559applied" (selectionChange)="updateAFPRassoc()">
+            <mat-option *ngFor="let code of tfCodes" [value]="code.p2000Code">
+              {{code.p2000Code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        Controls Allow Fully Returning Events.
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
+</div>

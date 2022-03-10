@@ -1,0 +1,16 @@
+{
+    "short_name": "GLOSS API",
+    "name": "GLOSS Configuration API",
+    "start_url": "/",
+    "theme_color": "#f48c5b",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/assets/img/logo-white.svg",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

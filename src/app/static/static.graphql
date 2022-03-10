@@ -1,0 +1,1889 @@
+query users {
+  users {
+    createdAt
+    client_ref
+    updatedAt
+    userid
+    email
+    firstname
+    lastname
+    role
+  }
+}
+mutation SignUp($data: UserInput!) {
+  signup(data: $data) {
+    createdAt
+    client_ref
+    updatedAt
+    userid
+    email
+    firstname
+    lastname
+    role
+  }
+}
+mutation resetPassword($data: LoginInput!) {
+  resetPassword(data: $data) {
+    createdAt
+    client_ref
+    updatedAt
+    userid
+    email
+    firstname
+    lastname
+    role
+  }
+}
+mutation deleteUser($userid: String!) {
+  deleteUser(userid: $userid) {
+    userid
+    email
+    firstname
+    lastname
+    role
+  }
+}
+query party($client_ref: String!, $party_ref: String!) {
+  party(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    party_type
+    party_short_name
+    party_long_name
+    party_extra_long_name
+    active_ind
+    has_swift_config
+    has_netting_config
+    version_no
+    version_date
+    version_user
+  }
+}
+query partyByType($party_type: String!, $client_ref: String!) {
+  partyByType(party_type: $party_type, client_ref: $client_ref) {
+    party_ref
+    client_ref
+    party_type
+    party_short_name
+    party_long_name
+    party_extra_long_name
+    active_ind
+    has_swift_config
+    has_netting_config
+    version_no
+    version_date
+    version_user
+  }
+}
+query firstPartyByType($party_type: String!, $client_ref: String!) {
+  firstPartyByType(party_type: $party_type, client_ref: $client_ref) {
+    party_ref
+    client_ref
+    party_type
+    party_short_name
+    party_long_name
+    party_extra_long_name
+    active_ind
+    has_swift_config
+    has_netting_config
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createParty($data: PartyInput!) {
+  createParty(data: $data) {
+    party_ref
+  }
+}
+mutation updateParty($data: PartyInput!) {
+  updateParty(data: $data) {
+    party_ref
+  }
+}
+mutation deletePartyTree($client_ref: String!, $party_ref: String!) {
+  deletePartyTree(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+  }
+}
+query partyExtRef($client_ref: String!, $party_ref: String!) {
+  partyExtRef(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    party_ext_ref
+    party_ext_ref_type
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartyExtRef($data: PartyExtRefInput!) {
+  createPartyExtRef(data: $data) {
+    party_ref
+  }
+}
+mutation updatePartyExtRef($data: PartyExtRefInput!) {
+  updatePartyExtRef(data: $data) {
+    party_ref
+    party_ext_ref
+    party_ext_ref_type
+  }
+}
+mutation deletePartyExtRef(
+  $party_ref: String!
+  $client_ref: String!
+  $party_ext_ref_type: String!
+) {
+  deletePartyExtRef(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    party_ext_ref_type: $party_ext_ref_type
+  ) {
+    party_ref
+  }
+}
+query partyClass($client_ref: String!, $party_ref: String!) {
+  partyClassification(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    class_code
+    class_type
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartyClassification($data: PartyClassInput!) {
+  createPartyClassification(data: $data) {
+    party_ref
+  }
+}
+mutation updatePartyClassification($data: PartyClassInput!) {
+  updatePartyClassification(data: $data) {
+    party_ref
+    class_type
+  }
+}
+mutation deletePartyClassification(
+  $party_ref: String!
+  $client_ref: String!
+  $class_type: String!
+) {
+  deletePartyClassification(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    class_type: $class_type
+  ) {
+    party_ref
+  }
+}
+query partyFlag($client_ref: String!, $party_ref: String!) {
+  partyFlag(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    flag_type
+    flag_code
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartyFlag($data: PartyFlagInput!) {
+  createPartyFlag(data: $data) {
+    party_ref
+  }
+}
+mutation updatePartyFlag($data: PartyFlagInput!) {
+  updatePartyFlag(data: $data) {
+    party_ref
+    flag_type
+    flag_code
+  }
+}
+mutation deletePartyFlag(
+  $party_ref: String!
+  $client_ref: String!
+  $flag_type: Int!
+  $flag_code: String!
+) {
+  deletePartyFlag(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    flag_type: $flag_type
+    flag_code: $flag_code
+  ) {
+    party_ref
+  }
+}
+query partyNarrative($client_ref: String!, $party_ref: String!) {
+  partyNarrative(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    narr_type
+    narrative
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartyNarrative($data: PartyNarrativeInput!) {
+  createPartyNarrative(data: $data) {
+    party_ref
+  }
+}
+mutation updatePartyNarrative($data: PartyNarrativeInput!) {
+  updatePartyNarrative(data: $data) {
+    party_ref
+    narr_type
+  }
+}
+mutation deletePartyNarrative(
+  $party_ref: String!
+  $client_ref: String!
+  $narr_type: String!
+) {
+  deletePartyNarrative(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    narr_type: $narr_type
+  ) {
+    party_ref
+  }
+}
+query partyInstr($client_ref: String!, $party_ref: String!) {
+  partyInstr(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    instr_ref
+    instr_ref_type
+    instr_type
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartyInstrument($data: PartyInstrInput!) {
+  createPartyInstrument(data: $data) {
+    party_ref
+    instr_ref
+    instr_ref_type
+  }
+}
+mutation updatePartyInstrument($data: PartyInstrInput!) {
+  updatePartyInstrument(data: $data) {
+    party_ref
+    instr_ref
+    instr_ref_type
+  }
+}
+mutation deletePartyInstrument(
+  $party_ref: String!
+  $client_ref: String!
+  $instr_type: String!
+  $instr_ref_type: String!
+  $instr_ref: String!
+) {
+  deletePartyInstrument(
+    client_ref: $client_ref
+    party_ref: $party_ref
+    instr_type: $instr_type
+    instr_ref_type: $instr_ref_type
+    instr_ref: $instr_ref
+  ) {
+    party_ref
+  }
+}
+query partyAssoc($client_ref: String!, $party_ref: String!) {
+  partyAssoc(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    assoc_type
+    assoc_party_ref
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartyAssoc($data: PartyAssocInput!) {
+  createPartyAssoc(data: $data) {
+    party_ref
+  }
+}
+mutation updatePartyAssoc($data: PartyAssocInput!) {
+  updatePartyAssoc(data: $data) {
+    assoc_type
+    party_ref
+  }
+}
+mutation deletePartyAssoc(
+  $party_ref: String!
+  $client_ref: String!
+  $assoc_type: String!
+) {
+  deletePartyAssoc(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    assoc_type: $assoc_type
+  ) {
+    assoc_type
+    party_ref
+  }
+}
+query partySSI($client_ref: String!, $party_ref: String!) {
+  partySSI(client_ref: $client_ref, party_ref: $party_ref) {
+    account_name
+    account_no
+    active_ind
+    comms_service
+    dacc_ref
+    depo_ref
+    depot_type
+    ccy
+    depot_alias
+    depot_descr
+    party_ref
+    client_ref
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartySSI($data: PartySSIInput!) {
+  createPartySSI(data: $data) {
+    party_ref
+  }
+}
+mutation updatePartySSI($data: PartySSIInput!) {
+  updatePartySSI(data: $data) {
+    party_ref
+  }
+}
+mutation deletePartySSI(
+  $client_ref: String!
+  $deleteSsiDepotAlias: String!
+  $party_ref: String!
+) {
+  deletePartySSI(
+    client_ref: $client_ref
+    depot_alias: $deleteSsiDepotAlias
+    party_ref: $party_ref
+  ) {
+    party_ref
+  }
+}
+query partyDate($client_ref: String!, $party_ref: String!) {
+  partyDate(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    date_type
+    date
+    time
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartyDate($data: PartyDateInput!) {
+  createPartyDate(data: $data) {
+    party_ref
+  }
+}
+mutation updatePartyDate($data: PartyDateInput!) {
+  updatePartyDate(data: $data) {
+    party_ref
+  }
+}
+mutation deletePartyDate(
+  $party_ref: String!
+  $client_ref: String!
+  $date_type: String!
+) {
+  deletePartyDate(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    date_type: $date_type
+  ) {
+    party_ref
+  }
+}
+query partyAddress($client_ref: String!, $party_ref: String!) {
+  partyAddress(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    addr_type
+    contact_name
+    contact_title
+    addr_line1
+    addr_line2
+    addr_line3
+    addr_line4
+    addr_line5
+    addr_line6
+    post_code
+    int_dial_code
+    phone_no
+    fax_no
+    email
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartyAddress($data: PartyAddressInput!) {
+  createPartyAddress(data: $data) {
+    party_ref
+  }
+}
+mutation updatePartyAddress($data: PartyAddressInput!) {
+  updatePartyAddress(data: $data) {
+    party_ref
+  }
+}
+mutation deletePartyAddress(
+  $party_ref: String!
+  $client_ref: String!
+  $addr_type: String!
+) {
+  deletePartyAddress(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    addr_type: $addr_type
+  ) {
+    party_ref
+  }
+}
+query partyTemplate($client_ref: String!, $party_ref: String!) {
+  partyTemplate(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    template_party_ref
+    party_short_name
+    party_long_name
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartyTemplate($data: PartyTemplateInput!) {
+  createPartyTemplate(data: $data) {
+    party_ref
+  }
+}
+mutation updatePartyTemplate($data: PartyTemplateInput!) {
+  updatePartyTemplate(data: $data) {
+    party_ref
+  }
+}
+mutation deletePartyTemplate($client_ref: String!, $party_ref: String!) {
+  deletePartyTemplate(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+  }
+}
+query partySwift($client_ref: String!, $party_ref: String!) {
+  partySwift(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    company_name
+    branch_code
+    logical_term_id
+    queue_mgr
+    incoming_queue
+    outgoing_queue
+    channel
+    host
+    port_number
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createPartySwift($data: PartySwiftInput!) {
+  createPartySwift(data: $data) {
+    party_ref
+  }
+}
+mutation updatePartySwift($data: PartySwiftInput!) {
+  updatePartySwift(data: $data) {
+    party_ref
+  }
+}
+mutation deletePartySwift($client_ref: String!, $party_ref: String!) {
+  deletePartySwift(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+  }
+}
+query partyClassAssoc($client_ref: String!, $party_ref: String!) {
+  partyClassAssoc(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    class_assoc_code
+    code_type
+    class_1
+    code_1
+    class_2
+    code_2
+    applied
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createClassAssoc($data: ClassAssocInput!) {
+  createClassAssoc(data: $data) {
+    party_ref
+    class_assoc_code
+  }
+}
+mutation updateClassAssoc($data: ClassAssocInput!) {
+  updateClassAssoc(data: $data) {
+    party_ref
+    class_assoc_code
+  }
+}
+mutation deleteClassAssoc(
+  $client_ref: String!
+  $party_ref: String!
+  $class_assoc_code: String!
+  $code_type: String!
+  $class_1: Int!
+  $code_1: String!
+  $class_2: Int!
+) {
+  deleteClassAssoc(
+    client_ref: $client_ref
+    party_ref: $party_ref
+    class_assoc_code: $class_assoc_code
+    code_type: $code_type
+    class_1: $class_1
+    code_1: $code_1
+    class_2: $class_2
+  ) {
+    party_ref
+    class_assoc_code
+  }
+}
+query partyNetting($client_ref: String!, $party_ref: String!) {
+  partyNetting(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    net_driver
+    settle_code
+    transaction_type
+    trade_group
+    late_rule
+    net_schedule_code
+    date_type
+    buy_and_sell_flag
+    net_party_ref
+    net_book
+    override_net_book
+    secondary_party
+    settle_terms
+    operation_type
+    net_primary
+    primary_comp_service
+    primary_secp_service
+    net_secondary
+    secondary_comp_service
+    secondary_secp_service
+    primary_instr
+    primary_comp_alias
+    primary_depot_type
+    primary_party_ref
+    primary_secp_alias
+    settle_instr
+    secondary_comp_alias
+    secondary_depot_type
+    secondary_party_ref
+    secondary_secp_alias
+    market_party
+    start_date_type
+    start_offset_ind
+    start_offset_code
+    end_date_type
+    end_offset_ind
+    end_offset_code
+    net_cash_when_zero_stock
+    split_buy_sell
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createNetting($data: NettingInput!) {
+  createNetting(data: $data) {
+    party_ref
+    net_driver
+    settle_code
+    transaction_type
+  }
+}
+mutation updateNetting($data: NettingInput!) {
+  updateNetting(data: $data) {
+    party_ref
+    net_driver
+    settle_code
+    transaction_type
+  }
+}
+mutation deleteNetting(
+  $client_ref: String!
+  $net_driver: String!
+  $party_ref: String!
+  $settle_code: String!
+  $transaction_type: String!
+) {
+  deleteNetting(
+    client_ref: $client_ref
+    net_driver: $net_driver
+    party_ref: $party_ref
+    settle_code: $settle_code
+    transaction_type: $transaction_type
+  ) {
+    party_ref
+    net_driver
+    settle_code
+    transaction_type
+  }
+}
+query glossScheduler($client_ref: String!) {
+  glossScheduler(client_ref: $client_ref) {
+    client_ref
+    active_ind_p2k
+    batch_size
+    bus_day
+    database_code
+    database_type
+    dst_region_code
+    due_date_time
+    end_by_interval
+    end_by_time
+    event_ref
+    frequency_end_time
+    frequency_interval
+    frequency_start_time
+    frequency_unit
+    holiday_id
+    msg_type
+    sql_db_code
+    start_by_interval
+    start_by_time
+    start_by_unit
+    supercede
+    use_current_date
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createglossScheduler($data: GlossSchedulerInput!) {
+  createglossScheduler(data: $data) {
+    event_ref
+  }
+}
+mutation updateglossScheduler(
+  $client_ref: String!
+  $msg_type: Int!
+  $event_ref: String!
+  $due_date_time: Date!
+  $database_code: String!
+  $data: GlossSchedulerInput!
+) {
+  updateglossScheduler(
+    client_ref: $client_ref
+    msg_type: $msg_type
+    event_ref: $event_ref
+    due_date_time: $due_date_time
+    database_code: $database_code
+    data: $data
+  ) {
+    event_ref
+  }
+}
+mutation deleteglossScheduler(
+  $client_ref: String!
+  $msg_type: Int!
+  $event_ref: String!
+  $due_date_time: Date!
+  $database_code: String!
+) {
+  deleteglossScheduler(
+    client_ref: $client_ref
+    msg_type: $msg_type
+    event_ref: $event_ref
+    due_date_time: $due_date_time
+    database_code: $database_code
+  ) {
+    event_ref
+  }
+}
+mutation backUpPartyData($client_ref: String!, $party_ref: String!) {
+  backUpPartyData(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+  }
+}
+mutation restorePartyData(
+  $party_ref: String!
+  $client_ref: String!
+  $version_no: Int!
+) {
+  restorePartyData(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    version_no: $version_no
+  ) {
+    party_ref
+  }
+}
+mutation savePartyStaticpushedToGloss(
+  $party_ref: String!
+  $client_ref: String!
+  $environment: String!
+) {
+  savePartyStaticpushedToGloss(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    environment: $environment
+  ) {
+    party_ref
+    party_type
+    party_short_name
+    party_long_name
+    party_extra_long_name
+    active_ind
+    has_swift_config
+    has_netting_config
+    version_no
+    version_date
+    version_user
+    party_addr {
+      party_ref
+      addr_type
+      contact_name
+      contact_title
+      addr_line1
+      addr_line2
+      addr_line3
+      addr_line4
+      addr_line5
+      addr_line6
+      post_code
+      int_dial_code
+      phone_no
+      fax_no
+      email
+    }
+    party_assoc {
+      party_ref
+      assoc_type
+      assoc_party_ref
+    }
+    party_classification {
+      party_ref
+      class_type
+      class_code
+    }
+    party_date {
+      party_ref
+      date_type
+      date
+      time
+    }
+    party_ext_ref {
+      party_ref
+      party_ext_ref_type
+      party_ext_ref
+    }
+    party_flag {
+      party_ref
+      flag_type
+      flag_code
+    }
+    party_instr {
+      party_ref
+      instr_type
+      instr_ref_type
+      instr_ref
+    }
+    party_narrative {
+      party_ref
+      narr_type
+      narrative
+    }
+    party_template {
+      party_ref
+      template_party_ref
+      party_short_name
+      party_long_name
+      version_no
+      version_date
+      version_user
+    }
+    party_class_assoc {
+      party_ref
+      class_assoc_code
+      code_type
+      class_1
+      code_1
+      class_2
+      code_2
+      applied
+      version_no
+      version_date
+      version_user
+    }
+  }
+}
+mutation saveClassAssocStaticpushedToGloss(
+  $party_ref: String!
+  $client_ref: String!
+  $environment: String!
+) {
+  saveClassAssocStaticpushedToGloss(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    environment: $environment
+  ) {
+    party_ref
+    class_assoc_code
+    code_type
+    class_1
+    code_1
+    class_2
+    code_2
+    applied
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation saveNettingStaticpushedToGloss(
+  $party_ref: String!
+  $client_ref: String!
+  $environment: String!
+) {
+  saveNettingStaticpushedToGloss(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    environment: $environment
+  ) {
+    party_ref
+    net_driver
+    settle_code
+    transaction_type
+    trade_group
+    late_rule
+    net_schedule_code
+    date_type
+    buy_and_sell_flag
+    net_party_ref
+    net_book
+    override_net_book
+    secondary_party
+    settle_terms
+    operation_type
+    net_primary
+    primary_comp_service
+    primary_secp_service
+    net_secondary
+    secondary_comp_service
+    secondary_secp_service
+    primary_instr
+    primary_comp_alias
+    primary_depot_type
+    primary_party_ref
+    primary_secp_alias
+    settle_instr
+    secondary_comp_alias
+    secondary_depot_type
+    secondary_party_ref
+    secondary_secp_alias
+    market_party
+    start_date_type
+    start_offset_ind
+    start_offset_code
+    end_date_type
+    end_offset_ind
+    end_offset_code
+    net_cash_when_zero_stock
+    split_buy_sell
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation cloneParty(
+  $party_ref: String!
+  $client_ref: String!
+  $new_party_ref: String!
+  $new_client_ref: String!
+) {
+  cloneParty(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    new_party_ref: $new_party_ref
+    new_client_ref: $new_client_ref
+  )
+}
+mutation cloneClassAssoc(
+  $party_ref: String!
+  $client_ref: String!
+  $new_party_ref: String!
+  $new_client_ref: String!
+) {
+  cloneClassAssoc(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    new_party_ref: $new_party_ref
+    new_client_ref: $new_client_ref
+  )
+}
+mutation cloneSwiftParty(
+  $party_ref: String!
+  $client_ref: String!
+  $new_party_ref: String!
+  $new_client_ref: String!
+) {
+  cloneSwiftParty(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    new_party_ref: $new_party_ref
+    new_client_ref: $new_client_ref
+  )
+}
+mutation cloneNettingData(
+  $party_ref: String!
+  $client_ref: String!
+  $new_party_ref: String!
+  $new_client_ref: String!
+) {
+  cloneNettingData(
+    party_ref: $party_ref
+    client_ref: $client_ref
+    new_party_ref: $new_party_ref
+    new_client_ref: $new_client_ref
+  )
+}
+query glossPartyAudit($client_ref: String!, $party_ref: String!) {
+  glossPartyAudit(client_ref: $client_ref, party_ref: $party_ref) {
+    party_ref
+    client_ref
+    party_data
+    party_ext_ref_data
+    party_classification_data
+    party_flag_data
+    party_narrative_data
+    party_assoc_data
+    party_instr_data
+    party_ssi_data
+    party_date_data
+    party_address_data
+    party_template_data
+    version_no
+    version_date
+    version_user
+  }
+}
+mutation cloneglossScheduler($client_ref: String!, $new_client_ref: String!) {
+  cloneglossScheduler(client_ref: $client_ref, new_client_ref: $new_client_ref)
+}
+query glossenvironments($client_ref: String!) {
+  glossenvironments(client_ref: $client_ref) {
+    environment
+    client_ref
+    description
+    sst_glossapi_url
+    active
+  }
+}
+query clients {
+  clients {
+    client_ref
+  }
+}
+query dpmPartyByClient($client_ref: String!, $component_type: String!) {
+  dpmPartyByClient(client_ref: $client_ref, component_type: $component_type) {
+    company_ref
+    party_ref
+    client_ref
+    component_type
+    party_type
+    inactive
+    version_date
+    version_no
+    version_user
+  }
+}
+query dpmPartyByType(
+  $client_ref: String!
+  $party_type: String!
+  $component_type: String!
+) {
+  dpmPartyByType(
+    client_ref: $client_ref
+    party_type: $party_type
+    component_type: $component_type
+  ) {
+    company_ref
+    party_ref
+    client_ref
+    component_type
+    party_type
+    inactive
+    version_date
+    version_no
+    version_user
+  }
+}
+query firstdpmPartyByClient($client_ref: String!, $component_type: String!) {
+  firstdpmPartyByClient(
+    client_ref: $client_ref
+    component_type: $component_type
+  ) {
+    company_ref
+    party_ref
+    client_ref
+    component_type
+    party_type
+    inactive
+    version_date
+    version_no
+    version_user
+  }
+}
+query dpmParty(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+) {
+  dpmParty(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+  ) {
+    company_ref
+    party_ref
+    client_ref
+    component_type
+    party_type
+    inactive
+    dpm_party_ext_ref {
+      company_ref
+      party_ref
+      party_ext_ref_type
+      party_ext_ref
+      version_no
+      version_user
+    }
+    dpm_party_flag {
+      company_ref
+      party_ref
+      party_flag_type
+      party_flag
+      version_no
+      version_user
+    }
+    dpm_account_def {
+      company_ref
+      party_ref
+      account_no
+      account_type
+      inactive
+      version_no
+      version_user
+    }
+    dpm_account_ext_ref {
+      company_ref
+      party_ref
+      account_no
+      account_ext_ref_type
+      account_ext_ref
+      version_no
+      version_user
+    }
+    dpm_account_flag {
+      company_ref
+      party_ref
+      account_no
+      account_flag_type
+      account_flag
+      version_no
+      version_user
+    }
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createdpmParty($data: DpmPartyDefInput!) {
+  createdpmParty(data: $data) {
+    company_ref
+    party_ref
+  }
+}
+mutation updatedpmParty($data: DpmPartyDefInput!) {
+  updatedpmParty(data: $data) {
+    company_ref
+    party_ref
+  }
+}
+mutation deletedpmPartyTree(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+) {
+  deletedpmPartyTree(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+  ) {
+    company_ref
+    party_ref
+  }
+}
+query dpmPartyExtRef(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+) {
+  dpmPartyExtRef(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+  ) {
+    company_ref
+    party_ref
+    client_ref
+    component_type
+    party_ext_ref_type
+    party_ext_ref
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createdpmPartyExtRef($data: DpmPartyExtRefInput!) {
+  createdpmPartyExtRef(data: $data) {
+    company_ref
+    party_ref
+  }
+}
+mutation updatedpmPartyExtRef($data: DpmPartyExtRefInput!) {
+  updatedpmPartyExtRef(data: $data) {
+    company_ref
+    party_ref
+    party_ext_ref
+    party_ext_ref_type
+  }
+}
+mutation deletedpmPartyExtRef(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+  $party_ext_ref_type: String!
+) {
+  deletedpmPartyExtRef(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+    party_ext_ref_type: $party_ext_ref_type
+  ) {
+    company_ref
+    party_ref
+  }
+}
+query dpmPartyFlag(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+) {
+  dpmPartyFlag(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+  ) {
+    company_ref
+    party_ref
+    client_ref
+    component_type
+    party_flag_type
+    party_flag
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createdpmPartyFlag($data: DpmPartyFlagInput!) {
+  createdpmPartyFlag(data: $data) {
+    company_ref
+    party_ref
+  }
+}
+mutation updatedpmPartyFlag($data: DpmPartyFlagInput!) {
+  updatedpmPartyFlag(data: $data) {
+    company_ref
+    party_ref
+    party_flag_type
+    party_flag
+  }
+}
+mutation deletedpmPartyFlag(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+  $party_flag_type: Int!
+  $party_flag: String!
+) {
+  deletedpmPartyFlag(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+    party_flag_type: $party_flag_type
+    party_flag: $party_flag
+  ) {
+    company_ref
+    party_ref
+  }
+}
+query dpmAccount(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+) {
+  dpmAccount(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+  ) {
+    company_ref
+    party_ref
+    client_ref
+    component_type
+    account_no
+    account_type
+    inactive
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createdpmAccount($data: DpmAccountInput!) {
+  createdpmAccount(data: $data) {
+    company_ref
+    party_ref
+  }
+}
+mutation updatedpmAccount($data: DpmAccountInput!) {
+  updatedpmAccount(data: $data) {
+    company_ref
+    party_ref
+  }
+}
+mutation deletedpmAccount(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+  $account_no: String!
+) {
+  deletedpmAccount(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+    account_no: $account_no
+  ) {
+    company_ref
+    party_ref
+  }
+}
+query dpmAccountExtRef(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+) {
+  dpmAccountExtRef(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+  ) {
+    company_ref
+    party_ref
+    client_ref
+    component_type
+    account_no
+    account_ext_ref_type
+    account_ext_ref
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createdpmAccountExtRef($data: DpmAccountExtRefInput!) {
+  createdpmAccountExtRef(data: $data) {
+    company_ref
+    party_ref
+  }
+}
+mutation updatedpmAccountExtRef($data: DpmAccountExtRefInput!) {
+  updatedpmAccountExtRef(data: $data) {
+    company_ref
+    party_ref
+    account_ext_ref_type
+    account_ext_ref
+  }
+}
+mutation deletedpmAccountExtRef(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+  $account_no: String!
+  $account_ext_ref_type: String!
+) {
+  deletedpmAccountExtRef(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+    account_no: $account_no
+    account_ext_ref_type: $account_ext_ref_type
+  ) {
+    company_ref
+    party_ref
+  }
+}
+query dpmAccountFlag(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+) {
+  dpmAccountFlag(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+  ) {
+    company_ref
+    party_ref
+    client_ref
+    component_type
+    account_no
+    account_flag_type
+    account_flag
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createdpmAccountFlag($data: DpmAccountFlagInput!) {
+  createdpmAccountFlag(data: $data) {
+    company_ref
+    party_ref
+  }
+}
+mutation updatedpmAccountFlag($data: DpmAccountFlagInput!) {
+  updatedpmAccountFlag(data: $data) {
+    company_ref
+    party_ref
+    account_flag_type
+    account_flag
+  }
+}
+mutation deletedpmAccountFlag(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+  $account_no: String!
+  $account_flag_type: Int!
+  $account_flag: String!
+) {
+  deletedpmAccountFlag(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+    account_no: $account_no
+    account_flag_type: $account_flag_type
+    account_flag: $account_flag
+  ) {
+    company_ref
+    party_ref
+  }
+}
+query dpmConfigDef(
+  $company_ref: String!
+  $component_type: String!
+  $client_ref: String!
+) {
+  dpmConfigDef(
+    company_ref: $company_ref
+    component_type: $component_type
+    client_ref: $client_ref
+  ) {
+    client_ref
+    component_type
+    company_ref
+    party_ref
+    config_type
+    config_value
+    description
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createdpmConfigDef($data: DpmConfigDefInput!) {
+  createdpmConfigDef(data: $data) {
+    company_ref
+  }
+}
+mutation updatedpmConfigDef($data: DpmConfigDefInput!) {
+  updatedpmConfigDef(data: $data) {
+    company_ref
+  }
+}
+mutation deletedpmConfigDef(
+  $client_ref: String!
+  $component_type: String!
+  $company_ref: String!
+  $config_type: String!
+) {
+  deletedpmConfigDef(
+    client_ref: $client_ref
+    component_type: $component_type
+    company_ref: $company_ref
+    config_type: $config_type
+  ) {
+    company_ref
+  }
+}
+mutation savedpmconfigdefpushed(
+  $client_ref: String!
+  $component_type: String!
+  $company_ref: String!
+  $environment: String!
+) {
+  savedpmconfigdefpushed(
+    client_ref: $client_ref
+    component_type: $component_type
+    company_ref: $company_ref
+    environment: $environment
+  ) {
+    company_ref
+    config_type
+    config_value
+    version_date
+    version_no
+    version_user
+  }
+}
+query databases($client_ref: String!, $component_type: String!) {
+  databases(client_ref: $client_ref, component_type: $component_type) {
+    client_ref
+    component_type
+    database_type
+    database_code
+    descr
+    sql_db_code
+    holiday_id_p2k
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createdatabase($data: DatabasesInput!) {
+  createdatabase(data: $data) {
+    client_ref
+  }
+}
+mutation updatedatabase($data: DatabasesInput!) {
+  updatedatabase(data: $data) {
+    client_ref
+  }
+}
+mutation deletedatabase(
+  $client_ref: String!
+  $component_type: String!
+  $database_type: String!
+  $database_code: String!
+) {
+  deletedatabase(
+    client_ref: $client_ref
+    component_type: $component_type
+    database_type: $database_type
+    database_code: $database_code
+  ) {
+    client_ref
+  }
+}
+query JsdcFileDef($client_ref: String!, $component_type: String!) {
+  JsdcFileDef(client_ref: $client_ref, component_type: $component_type) {
+    client_ref
+    component_type
+    data_rec_type_len
+    db_code
+    file_desc
+    file_diff
+    file_name
+    file_proc_type
+    multi_basis_date
+    proc_status_check
+    proc_status_pos
+    proc_status_value
+    rec_len
+    required_file_name
+    transfer_type
+    product_group
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createJsdcFileDef($data: JsdcFileDefInput!) {
+  createJsdcFileDef(data: $data) {
+    client_ref
+  }
+}
+mutation updateJsdcFileDef($data: JsdcFileDefInput!) {
+  updateJsdcFileDef(data: $data) {
+    client_ref
+  }
+}
+mutation deleteJsdcFileDef(
+  $client_ref: String!
+  $component_type: String!
+  $file_name: String!
+) {
+  deleteJsdcFileDef(
+    client_ref: $client_ref
+    component_type: $component_type
+    file_name: $file_name
+  ) {
+    client_ref
+  }
+}
+mutation savefilesStaticpushed(
+  $client_ref: String!
+  $component_type: String!
+  $environment: String!
+) {
+  savefilesStaticpushed(
+    client_ref: $client_ref
+    component_type: $component_type
+    environment: $environment
+  ) {
+    client_ref
+    component_type
+    file_name
+    transfer_type
+    rec_len
+    data_rec_type_len
+    file_diff
+    proc_status_check
+    proc_status_pos
+    proc_status_value
+    file_proc_type
+    multi_basis_date
+    required_file_name
+    db_code
+    file_desc
+    product_group
+    version_date
+    version_no
+    version_user
+  }
+}
+query dpmScheduler($client_ref: String!, $component_type: String!) {
+  dpmScheduler(client_ref: $client_ref, component_type: $component_type) {
+    client_ref
+    component_type
+    active_ind_p2k
+    batch_size
+    bus_day
+    database_code
+    database_type
+    due_date_time
+    end_by_interval
+    end_by_time
+    event_ref
+    frequency_end_time
+    frequency_interval
+    frequency_start_time
+    frequency_unit
+    holiday_id
+    msg_type
+    sql_db_code
+    start_by_interval
+    start_by_time
+    start_by_unit
+    supercede
+    use_current_date
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createdpmScheduler($data: DpmSchedulerInput!) {
+  createdpmScheduler(data: $data) {
+    event_ref
+  }
+}
+mutation updatedpmScheduler(
+  $client_ref: String!
+  $component_type: String!
+  $msg_type: Int!
+  $event_ref: String!
+  $due_date_time: Date!
+  $database_code: String!
+  $data: DpmSchedulerInput!
+) {
+  updatedpmScheduler(
+    client_ref: $client_ref
+    component_type: $component_type
+    msg_type: $msg_type
+    event_ref: $event_ref
+    due_date_time: $due_date_time
+    database_code: $database_code
+    data: $data
+  ) {
+    event_ref
+  }
+}
+mutation deletedpmScheduler(
+  $client_ref: String!
+  $component_type: String!
+  $msg_type: Int!
+  $event_ref: String!
+  $due_date_time: Date!
+  $database_code: String!
+) {
+  deletedpmScheduler(
+    client_ref: $client_ref
+    component_type: $component_type
+    msg_type: $msg_type
+    event_ref: $event_ref
+    due_date_time: $due_date_time
+    database_code: $database_code
+  ) {
+    event_ref
+  }
+}
+mutation clonedpmParty(
+  $company_ref: String!
+  $client_ref: String!
+  $component_type: String!
+  $new_company_ref: String!
+  $new_client_ref: String!
+) {
+  clonedpmParty(
+    company_ref: $company_ref
+    client_ref: $client_ref
+    component_type: $component_type
+    new_company_ref: $new_company_ref
+    new_client_ref: $new_client_ref
+  )
+}
+mutation clonedatabases(
+  $client_ref: String!
+  $component_type: String!
+  $new_client_ref: String!
+) {
+  clonedatabases(
+    client_ref: $client_ref
+    component_type: $component_type
+    new_client_ref: $new_client_ref
+  )
+}
+mutation clonejsdcfiledef(
+  $client_ref: String!
+  $component_type: String!
+  $product_group: String!
+  $new_client_ref: String!
+) {
+  clonejsdcfiledef(
+    client_ref: $client_ref
+    component_type: $component_type
+    product_group: $product_group
+    new_client_ref: $new_client_ref
+  )
+}
+mutation clonedpmScheduler(
+  $client_ref: String!
+  $component_type: String!
+  $new_client_ref: String!
+) {
+  clonedpmScheduler(
+    client_ref: $client_ref
+    component_type: $component_type
+    new_client_ref: $new_client_ref
+  )
+}
+mutation backUpDpmPartyData(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+) {
+  backUpDpmPartyData(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+  ) {
+    company_ref
+  }
+}
+query dpmPartyAudit(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+) {
+  dpmPartyAudit(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+  ) {
+    company_ref
+    party_ref
+    client_ref
+    component_type
+    party_data
+    party_ext_ref_data
+    party_flag_data
+    account_data
+    account_ext_ref_data
+    account_flag_data
+    version_no
+    version_date
+    version_user
+  }
+}
+mutation restoreDpmPartyData(
+  $company_ref: String!
+  $party_ref: String!
+  $client_ref: String!
+  $component_type: String!
+  $version_no: Int!
+) {
+  restoreDpmPartyData(
+    company_ref: $company_ref
+    party_ref: $party_ref
+    client_ref: $client_ref
+    component_type: $component_type
+    version_no: $version_no
+  ) {
+    company_ref
+  }
+}
+query jasdecenvironments($client_ref: String!) {
+  jasdecenvironments(client_ref: $client_ref) {
+    environment
+    client_ref
+    description
+    sst_jasdecapi_url
+    active
+  }
+}
+query bojenvironments($client_ref: String!) {
+  bojenvironments(client_ref: $client_ref) {
+    environment
+    client_ref
+    description
+    sst_bojapi_url
+    active
+  }
+}
+query configDefEntries($client_ref: String!, $component_type: String!) {
+  configDefEntries(client_ref: $client_ref, component_type: $component_type) {
+    client_ref
+    component_type
+    config_ref
+    config_type
+    component
+    database_code
+    component_data
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation updateConfigDef($data: ConfigDefInput!) {
+  updateConfigDef(data: $data) {
+    client_ref
+  }
+}
+query teTemplates {
+  teTemplates {
+    component_type
+    template_type
+    template_data
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation createTETemplate($data: TETemplateInput!) {
+  createTETemplate(data: $data) {
+    component_type
+    template_type
+    template_data
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation updateTETemplate($data: TETemplateInput!) {
+  updateTETemplate(data: $data) {
+    component_type
+    template_type
+    template_data
+    version_date
+    version_no
+    version_user
+  }
+}
+mutation deleteTETemplate($component_type: String!, $template_type: String!) {
+  deleteTETemplate(
+    component_type: $component_type
+    template_type: $template_type
+  ) {
+    component_type
+    template_type
+    template_data
+    version_date
+    version_no
+    version_user
+  }
+}

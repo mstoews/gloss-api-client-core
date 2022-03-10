@@ -1,0 +1,4 @@
+<ng-container *ngIf="partyGql$ | async as partyGql">
+  <grid [cols]="cols" [rows]="partyGql" (notifyFileUpload)="onFileUpload($event)" (notifyOpenDialog)="onNotify($event)">
+  </grid>
+</ng-container>

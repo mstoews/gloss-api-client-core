@@ -1,0 +1,50 @@
+<ng-container>
+  <div class="content-block">
+    <div class="dx-card responsive-paddings">
+      <dx-tree-list *ngIf="taskGql$ | async as tasks"
+      [rootValue]="-1"
+      [dataSource]="tasks"
+      keyExpr="Id"
+      parentIdExpr="parentId"
+      [showBorders]="true"
+      [focusedRowEnabled]="true"
+      [focusedRowIndex]="0"
+      [allowColumnResizing]="true"
+      [columnAutoWidth]="true"
+      [wordWrapEnabled]="false"
+      [autoExpandAll]="true"
+      [columnAutoWidth]="false"
+      [showRowLines]="true"
+      >
+      <dxo-scrolling mode="standard"></dxo-scrolling>
+      <dxo-paging [enabled]="true" [pageSize]="10"> </dxo-paging>
+      <dxo-pager
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5, 10, 20]"
+        [showInfo]="true"
+      ></dxo-pager>
+
+      <dxo-row-dragging
+      [onDragChange]="onDragChange"
+      [allowDropInsideItem]="true"
+      [allowReordering]="true"
+      [showDragIcons]="true"
+      dropFeedbackMode="push"
+      [onReorder]="onReorder">
+      </dxo-row-dragging>
+
+      <dxi-column  dataField="task_id" caption="ID" width=[400] ></dxi-column>
+      <dxi-column  dataField="title"        ></dxi-column>
+      <dxi-column  dataField="description"  ></dxi-column>
+      <dxi-column  dataField="status"       ></dxi-column>
+      <dxi-column  dataField="priority"     ></dxi-column>
+      <dxi-column  dataField="estimate"     ></dxi-column> 
+      <dxi-column  dataField="assignee"     ></dxi-column>
+      <dxi-column  dataField="start_date" dataType="date" ></dxi-column>
+      <dxi-column  dataField="due_date"   dataType="date" ></dxi-column>
+
+    </dx-tree-list>
+    </div>
+  </div>
+</ng-container>
+

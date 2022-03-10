@@ -1,0 +1,36 @@
+<ng-container *ngIf="taskGql | async as tasks">
+  <div class="content-block">
+    <div class="dx-card responsive-paddings">
+      <dx-data-grid
+      keyExpr="task_id"
+      [focusedRowEnabled]="true"
+      [focusedRowIndex]="0"
+      [columnAutoWidth]="true"
+      [dataSource]="tasks"
+      [showBorders]="true"
+      (onCellDblClick)="onRowDblClick($event)"
+      >
+      <dxo-group-panel [visible]="true"></dxo-group-panel>
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+      <dxo-filter-row [visible]="false"></dxo-filter-row>
+
+      <dxi-column  dataField="task_id"      caption="ID" ></dxi-column>
+      <dxi-column  dataField="party_ref"    caption="Party" ></dxi-column>
+      <dxi-column  dataField="title"        ></dxi-column>
+      <dxi-column  dataField="description" width=[200] ></dxi-column>
+      <dxi-column  dataField="status"       ></dxi-column>
+      <dxi-column  dataField="summary"     width=[200] ></dxi-column>
+      <dxi-column  dataField="type"         ></dxi-column>
+      <dxi-column  dataField="priority"     ></dxi-column>
+      <dxi-column  dataField="tags"         ></dxi-column>
+      <dxi-column  dataField="estimate"     ></dxi-column>
+      <dxi-column  dataField="assignee"     ></dxi-column>
+      <dxi-column  dataField="start_date" dataType="date"></dxi-column>
+      <dxi-column  dataField="due_date"  dataType="date"></dxi-column>
+
+    </dx-data-grid>
+    </div>
+  </div>
+</ng-container>
+

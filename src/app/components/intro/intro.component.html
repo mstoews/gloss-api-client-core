@@ -1,0 +1,58 @@
+<mat-card>
+<mat-card-title>   
+  <!-- <mat-icon [ngStyle]="iconStyle()" [svgIcon]="'heroicons_outline:adjustments'"></mat-icon> -->
+  <span>Set Environments</span>
+</mat-card-title>
+<div *ngIf="loading == true">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="loading == false">
+  <form [formGroup]="formGroup">
+    <mat-vertical-stepper #stepper>
+      <mat-step>
+        <ng-template matStepLabel>Gloss Environment - {{ glossenv }}</ng-template>
+        <mat-form-field>
+          <mat-select formControlName="glossenvironment" placeholder="Gloss Environment"
+            (selectionChange)="activeglossEnvironment()">
+            <mat-option *ngFor="let environment of glossenvironments" [value]="environment">
+              {{ environment.environment }}-{{ environment.description }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Jasdec Environment - {{ jasdecenv }}</ng-template>
+        <mat-form-field>
+          <mat-select formControlName="jasdecenvironment" placeholder="Jasdec Environment"
+            (selectionChange)="activejasdecEnvironment()">
+            <mat-option *ngFor="let environment of jasdecenvironments" [value]="environment">
+              {{ environment.environment }}-{{ environment.description }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Boj Environment - {{ bojenv }}</ng-template>
+        <mat-form-field>
+          <mat-select formControlName="bojenvironment" placeholder="Boj Environment"
+            (selectionChange)="activebojEnvironment()">
+            <mat-option *ngFor="let environment of bojenvironments" [value]="environment">
+              {{ environment.environment }}-{{ environment.description }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </form>
+</div>
+</mat-card>

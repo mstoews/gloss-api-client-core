@@ -1,0 +1,81 @@
+<div class="mat-card-parent">
+  <mat-card *ngIf=this.afAuth.isAdministrator()>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-card-header>
+        <mat-card-title>Account Management</mat-card-title>
+      </mat-card-header>
+
+      <div id="menu-buttons">
+        <button class="box" mat-raised-button  (click)="changeType('signup')">Create</button>
+        <button class="box" mat-raised-button  (click)="changeType('reset')">Reset</button>
+        <button class="box" mat-raised-button  (click)="changeType('delete')">Delete</button>
+      </div>
+
+      <mat-form-field [color]="email.valid && 'accent'" *ngIf="isSignup" class="login-field">
+        <input matInput formControlName="email" type="email" placeholder="Email Address" autocomplete="off" />
+        <mat-error *ngIf="email.invalid && email.dirty">
+          You must enter a valid email address
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="login-field">
+        <input matInput formControlName="userid" placeholder="User ID" />
+      </mat-form-field>
+
+      <mat-form-field *ngIf="isSignup" class="login-field">
+        <input matInput formControlName="firstname" placeholder="First Name" />
+      </mat-form-field>
+
+      <mat-form-field *ngIf="isSignup" class="login-field">
+        <input matInput formControlName="lastname" placeholder="Last Name" />
+      </mat-form-field>
+
+      <mat-form-field *ngIf="isSignup" class="login-field">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="roleSelected">
+          <mat-option value="TEAMOPERATOR">TEAMOPERATOR</mat-option>
+          <mat-option value="TEAMSUPERVISOR">TEAMSUPERVISOR</mat-option>
+          <mat-option value="ADMIN">ADMIN</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="isSignup" class="login-field">
+        <mat-label>Client</mat-label>
+        <mat-select formControlName="client_ref">
+          <mat-option *ngFor="let client of clients" [value]="client.client_ref">
+            {{client.client_ref}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field [color]="email.valid && 'accent'" *ngIf="isSignup || isPasswordReset" class="login-field">
+        <input matInput formControlName="password" type="password" placeholder="Password" autocomplete="off" />
+        <mat-error *ngIf="password.invalid && password.dirty">
+          Password must be at least 8 characters long
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field [color]="passwordDoesMatch ? 'accent' : 'warn'" *ngIf="isSignup || isPasswordReset"
+        class="login-field">
+        <input matInput formControlName="passwordConfirm" type="password" placeholder="Confirm password"
+          autocomplete="off" />
+        <mat-error *ngIf="passwordConfirm.dirty || !passwordDoesMatch">
+          Password does not match
+        </mat-error>
+      </mat-form-field>
+
+      <div id="menu-buttons">
+      <button class="box" *ngIf="isSignup" mat-raised-button color="accent" type="submit"
+        [disabled]="form.invalid || !passwordDoesMatch || loading"> Submit </button>
+      </div>
+
+      <button *ngIf="isPasswordReset" mat-stroked-button type="submit" [disabled]="!passwordDoesMatch || loading">
+        Reset
+      </button>
+
+      <button *ngIf="isDeleteUser" mat-stroked-button type="submit" [disabled]="loading">
+        Delete User
+      </button>
+    </form>
+  </mat-card>
+</div>

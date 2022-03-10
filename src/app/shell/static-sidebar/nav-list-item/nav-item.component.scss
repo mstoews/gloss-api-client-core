@@ -1,0 +1,37 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  width: 100%;
+
+  .mat-list-item {
+    color: white;
+    font-size: 1.4rem;
+  }
+  .mat-list-item.active {
+    background: linear-gradient(135deg, #a9b9e5 15%,#00578E 100%);
+    background-color: #00578E;
+    opacity: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2a9e5', endColorstr='#2b94e5',GradientType=1 );
+  }
+
+  a:hover {
+      background: linear-gradient(135deg, #a9b9e5 15%,#00578E 100%);
+        background-color: #00578E;
+        opacity: 1;
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2a9e5', endColorstr='#2b94e5',GradientType=1 );
+  }
+  &a:focus {
+    >.mat-list-item:not(.expanded) {
+      background-color: #00578E;
+    }
+  }
+}
+
+a:hover {
+  background: linear-gradient(135deg, #a9b9e5 15%,#00578E 100%);
+    background-color: linear-gradient(135deg, #a9b9e5 15%,#00578E 100%);
+    opacity: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2a9e5', endColorstr='#2b94e5',GradientType=1 );
+}
+

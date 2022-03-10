@@ -1,0 +1,122 @@
+* {
+  margin: 0px;
+
+}
+
+.menu-button {
+  transition: all 1s ease-out !important;
+}
+.clicked {
+  transform: rotate(180deg)
+}
+
+
+.flex-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  width: 100%;
+}
+
+
+.flex-header {
+  background-color: var(--color-primary-dark);
+  height: 6rem;
+}
+
+.flex-main {
+  display: flex; 
+  flex: 1;
+  background-color:  var(--color-grey-dark-1);
+}
+
+.flex-nav {
+  background-color:  var(--color-grey-dark-1);
+  color: white;
+  flex: 0 0 240px;
+  overflow-y: hidden;  
+}
+
+.flex-article {
+  color: white;
+  background-color: var(--color-grey-light-1);
+  min-width: 0;
+  flex: 7 0 ;
+}
+
+@media all and (max-width: 540px) {
+  .flex-main {
+      flex-direction: column;
+  }
+}
+
+.sidenav {
+  padding: 0%;
+  margin: 0;
+  background-color:  var(--color-grey-dark-1);
+  width: 250px;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+
+.mat-toolbar {
+  border-color: aliceblue;
+  background: linear-gradient(rgba(0, 0, 0, 0.603), rgba(0, 0, 0, 0.411)), url('/assets/img/rainbow.jpg') center;
+  background-size: cover;
+  color: rgb(255, 255, 255);
+}
+
+.mat-toolbar:hover .mat-icon svgIcon {
+  transform: rotate(-180deg);
+}
+
+.sidenav-container {
+  flex: 1;
+  transition: all .4s ease 0s;
+  overflow-y:hidden; 
+}
+
+.mat-sidenav{
+  flex: 1;
+  background-color: var(--color-grey-dark-1);
+  overflow: hidden; /* Hide scrollbars */
+}
+
+.mat-sidenav-container{
+  flex: 1;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+.drop-menu {
+  background-color: var(--color-grey-dark-1);
+  color: white;
+}
+
+// keyframes are not used right now but could be good for animating the sliding of the drawers more effectively
+
+@keyframes rotate {
+  0% {
+    transform: translate(0, 0) scale(1) rotateY(0deg);
+  }
+  25% {
+    transform: translate(0, 0) scale(1) rotateY(90deg);
+  }
+  50% {
+    transform: translate( 0, 0 ) scale(1) rotateY(180deg);
+  }
+  75% {
+    transform: translate(0,0) scale(1) rotateY(270deg);
+  }
+  100% {
+    transform: translate(0,0) scale(1) rotateY(360deg);
+  }
+}
+

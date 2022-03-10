@@ -1,0 +1,35 @@
+<mat-toolbar (formPartyRefChanged)="formPartyRefChanged($event)" color="primary">
+  <button (click)="onClickRefresh()" mat-icon-button matTooltip="Refresh Grid" aria-label="menu">
+    <mat-icon class="side-nav__icon" [svgIcon]="'heroicons_outline:menu'"></mat-icon>
+    <span class="fill-space">{{inTitle}} : {{inPartyRef}}</span>
+  </button>
+  <span class="fill-space"></span>
+  <button (click)="onClickRefresh()" mat-icon-button matTooltip="Refresh Grid" aria-label="refresh">
+    <mat-icon class="side-nav__icon" [svgIcon]="'heroicons_outline:refresh'"></mat-icon>
+  </button>
+  <button (click)="onClickClone()" mat-icon-button matTooltip="Clone" aria-label="clone">
+    <mat-icon class="side-nav__icon" [svgIcon]="'mat_outline:content_copy'"></mat-icon>
+  </button>
+  <button (click)="onClickAdd()" mat-icon-button matTooltip="Add" aria-label="Delete">
+    <mat-icon class="side-nav__icon" [svgIcon]="'mat_outline:note_add'"></mat-icon>
+  </button>
+  <button (click)="onClickDelete()" mat-icon-button matTooltip="Delete" aria-label="Delete">
+    <mat-icon class="side-nav__icon" [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+  </button>
+  <button (click)="onClickBackUp()" mat-icon-button matTooltip="BackUp" aria-label="BackUp">
+    <mat-icon class="side-nav__icon" [svgIcon]="'mat_outline:cloud_upload'"></mat-icon>
+  </button>
+  <button (click)="onClickRestore()" mat-icon-button matTooltip="Restore" aria-label="Restore">
+    <mat-icon class="side-nav__icon" [svgIcon]="'mat_outline:restore'"></mat-icon>
+  </button>
+  <button [disabled]="this.afAuth.isTeamOperator()" (click)="onClickSend()" mat-icon-button matTooltip="Send to GLOSS"
+    aria-label="Send">
+    <mat-icon class="side-nav__icon" [svgIcon]="'mat_outline:send'"></mat-icon>
+  </button>
+  <button (click)="onJsonDownload()" mat-icon-button matTooltip="JSON Upload/Download" aria-label="refresh">
+    <mat-icon class="side-nav__icon" [svgIcon]="'heroicons_outline:cloud-upload'"></mat-icon>
+  </button>
+  <!-- <button (click)="onJsonUpload()" mat-icon-button  matTooltip="Upload JSON"  aria-label="refresh">
+    <mat-icon class="side-nav__icon" [svgIcon]="'heroicons_outline:upload'" ></mat-icon>
+  </button> -->
+</mat-toolbar>

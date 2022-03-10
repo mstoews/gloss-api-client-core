@@ -1,0 +1,370 @@
+<div *ngIf="loading == true">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="loading == false">
+  <div mat-dialog-content>
+    <form [formGroup]="formGroup" #myForm="ngForm">
+      <mat-vertical-stepper #stepper>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Company</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Company" formControlName="party_ref" />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Netting Driver</ng-template>
+          <mat-form-field>
+            <input type="text" placeholder="Netting Driver" aria-label="Netting Driver" matInput
+              formControlName="net_driver" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let glossCode of glossCodes1813" [value]="glossCode.p2000Code">
+                {{glossCode.p2000Code}}-{{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+          Selecting the type of netting to be executed e.g pair-off,CNS etc
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Settle Code</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="settle_code">
+              <mat-option value="">None</mat-option>
+              <mat-option *ngFor="let glossCode of glossCodes1210" [value]="glossCode.p2000Code">
+                {{glossCode.p2000Code}}-{{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+          Select the settle codes in scope
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Transaction Type</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="transaction_type">
+              <mat-option value="">None</mat-option>
+              <mat-option *ngFor="let glossCode of glossCodes1200" [value]="glossCode.p2000Code">
+                {{glossCode.p2000Code}}-{{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+          Select the transaction types in scope
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Trade Group</ng-template>
+          <mat-form-field> <input matInput type="number" placeholder="Trade Group"
+              formControlName="trade_group" />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Late Rule</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="late_rule">
+              <mat-option value="">None</mat-option>
+              <mat-option *ngFor="let glossCode of glossCodes3081" [value]="glossCode.p2000Code">
+                {{glossCode.p2000Code}}-{{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Net Schedule Code</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="net_schedule_code">
+              <mat-option value="">None</mat-option>
+              <mat-option *ngFor="let glossCode of glossCodes2649" [value]="glossCode.p2000Code">
+                {{glossCode.p2000Code}}-{{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Date Type</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="date_type">
+              <mat-option value="">None</mat-option>
+              <mat-option value="TDAT">TDAT - Trade date</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>buy and sell flag</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="buy_and_sell_flag">
+              <mat-option *ngFor="let glossCode of ynCodes" [value]="glossCode.p2000Code">
+                {{glossCode.p2000Code}}-{{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+          Controls rules e.g Buy + Sell netting together, seperately, only netting if both present
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Net book</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="net_book" formControlName="net_book" />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Secondary party</ng-template>
+          <mat-form-field>
+            <!-- <mat-select formControlName="secondary_party" (selectionChange)="counterpartyUpdated($event)">
+              <input (keyup)="cpfilter($event)">
+              <mat-option *ngFor="let party of filteredcounterparties" [value]="party.party_ext_ref">
+                {{party.party_ext_ref}}
+              </mat-option>
+            </mat-select> -->
+            <input matInput placeholder="secondary_party" formControlName="secondary_party" />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+          Set the cpty code for scope the netting
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Settle terms</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="settle_terms">
+              <mat-option value="">None</mat-option>
+              <mat-option *ngFor="let glossCode of glossCodes1253" [value]="glossCode.p2000Code">
+                {{glossCode.p2000Code}}-{{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Operation type</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="operation_type">
+              <mat-option value="">None</mat-option>
+              <mat-option value="BUY ">BUY - Buy</mat-option>
+              <mat-option value="SELL">SELL - Sell</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Depot</ng-template>
+          <mat-form-field>
+            <!-- <mat-select formControlName="primary_comp_alias" placeholder="primary_comp_alias">
+              <input (keyup)="pcafilter($event)">
+              <mat-option *ngFor="let compdepotalias of filteredcompdepotaliases" [value]="compdepotalias">
+                {{compdepotalias}}
+              </mat-option>
+            </mat-select> -->
+            <input matInput placeholder="primary_comp_alias" formControlName="primary_comp_alias" />
+          </mat-form-field>
+          <mat-form-field>
+            <!-- <mat-select formControlName="primary_comp_service" placeholder="primary_comp_service">
+              <input (keyup)="pcsfilter($event)">
+              <mat-option *ngFor="let compdepotcommservice of filteredcompdepotcommservices"
+                [value]="compdepotcommservice">
+                {{compdepotcommservice}}
+              </mat-option>
+            </mat-select> -->
+            <input matInput placeholder="primary_comp_service" formControlName="primary_comp_service" />
+          </mat-form-field>
+          <mat-form-field>
+            <!-- <mat-select formControlName="primary_secp_alias" placeholder="primary_secp_alias">
+              <input (keyup)="psafilter($event)">
+              <mat-option *ngFor="let secpdepotalias of filteredsecpdepotaliases" [value]="secpdepotalias">
+                {{secpdepotalias}}
+              </mat-option>
+            </mat-select>  -->
+            <input matInput placeholder="primary_secp_alias" formControlName="primary_secp_alias" />
+          </mat-form-field>
+          <mat-form-field>
+            <!-- <mat-select formControlName="primary_secp_service" placeholder="primary_secp_service">
+              <input (keyup)="pssfilter($event)">
+              <mat-option *ngFor="let secpdepotcommservice of filteredsecpdepotcommservices"
+                [value]="secpdepotcommservice">
+                {{secpdepotcommservice}}
+              </mat-option>
+            </mat-select> -->
+            <input matInput placeholder="primary_secp_service" formControlName="primary_secp_service" />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+          Set the company depot in target
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Nostro</ng-template>
+          <mat-form-field>
+            <!-- <mat-select formControlName="secondary_comp_alias" placeholder="secondary_comp_alias">
+              <input (keyup)="scafilter($event)">
+              <mat-option *ngFor="let compnostroalias of filteredcompnostroaliases" [value]="compnostroalias">
+                {{compnostroalias}}
+              </mat-option>
+            </mat-select> -->
+            <input matInput placeholder="secondary_comp_alias" formControlName="secondary_comp_alias" />
+          </mat-form-field>
+          <mat-form-field>
+            <!-- <mat-select formControlName="secondary_comp_service" placeholder="secondary_comp_service">
+              <input (keyup)="scsfilter($event)">
+              <mat-option *ngFor="let compnostrocommservice of filteredcompnostrocommservices"
+                [value]="compnostrocommservice">
+                {{compnostrocommservice}}
+              </mat-option>
+            </mat-select> -->
+            <input matInput placeholder="secondary_comp_service" formControlName="secondary_comp_service" />
+          </mat-form-field>
+          <mat-form-field>
+            <!-- <mat-select formControlName="secondary_secp_alias" placeholder="secondary_secp_alias">
+              <input (keyup)="ssafilter($event)">
+              <mat-option *ngFor="let secpnostroalias of filteredsecpnostroaliases" [value]="secpnostroalias">
+                {{secpnostroalias}}
+              </mat-option>
+            </mat-select> -->
+            <input matInput placeholder="secondary_secp_alias" formControlName="secondary_secp_alias" />
+          </mat-form-field>
+          <mat-form-field>
+            <!-- <mat-select formControlName="secondary_secp_service" placeholder="secondary_secp_service">
+              <input (keyup)="sssfilter($event)">
+              <mat-option *ngFor="let secpnostrocommservice of filteredsecpnostrocommservices"
+                [value]="secpnostrocommservice">
+                {{secpnostrocommservice}}
+              </mat-option>
+            </mat-select> -->
+            <input matInput placeholder="secondary_secp_service" formControlName="secondary_secp_service" />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+          Set the company nostro in target
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>Market Party</ng-template>
+          <mat-form-field> <input matInput placeholder="market_party"
+              formControlName="market_party" />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>start date type</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="start_date_type">
+              <mat-option value="TDAT">TDAT - Trade date</mat-option>
+              <mat-option value="VDAT">VDAT - Value date</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="start_offset_ind">
+              <mat-option *ngFor="let glossCode of offsetCodes" [value]="glossCode.p2000Code">
+                {{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="start_offset_code">
+              <mat-option *ngFor="let glossCode of glossCodes2537" [value]="glossCode.p2000Code">
+                {{glossCode.p2000Code}}-{{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>end date type</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="end_date_type">
+              <mat-option value="TDAT">TDAT - Trade date</mat-option>
+              <mat-option value="VDAT">VDAT - Value date</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="end_offset_ind">
+              <mat-option *ngFor="let glossCode of offsetCodes" [value]="glossCode.p2000Code">
+                {{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="end_offset_code">
+              <mat-option *ngFor="let glossCode of glossCodes2537" [value]="glossCode.p2000Code">
+                {{glossCode.p2000Code}}-{{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="formGroup">
+          <ng-template matStepLabel>split buy sell</ng-template>
+          <mat-form-field>
+            <mat-select formControlName="split_buy_sell">
+              <mat-option *ngFor="let glossCode of ynCodes" [value]="glossCode.p2000Code">
+                {{glossCode.p2000Code}}-{{glossCode.codeShortDesc}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onUpdate()" [disabled]="!myForm.form.valid" mat-flat-button
+      color="primary">Update</button>
+    <button mat-button (click)="onCreate()" [disabled]="!myForm.form.valid" mat-flat-button
+      color="primary">Insert</button>
+    <button mat-button (click)="onDelete()" mat-flat-button color="primary">Delete</button>
+    <button mat-button (click)="onCancel()" mat-flat-button color="warn">Cancel</button>
+  </div>
+</div>

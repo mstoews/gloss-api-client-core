@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gloss-backend-pod
+  labels:
+    app: gloss-api-backend
+    rel: stable
+spec:
+  containers:
+  - name: gloss-backend-pod
+    image: docker.io/mstoews/gloss-api-backend_nest-api:latest
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 3000

@@ -1,0 +1,69 @@
+<mat-tab-group  #tabGroup (selectedTabChange)="onTabClick($event)">
+
+  <mat-tab label="Kanban">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-kanban-card></app-kanban-card>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Boards">
+    <ng-template matTabContent>
+      <div class="container">
+        <party-list></party-list>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+<mat-tab label="Board Tasks">
+  <ng-template matTabContent>
+    <div class="container">
+      <tasks-list></tasks-list>
+    </div>
+  </ng-template>
+</mat-tab>
+
+<mat-tab label="Dependency">
+  <ng-template matTabContent>
+    <div class="container">
+      <dependency-tree></dependency-tree>
+    </div>
+  </ng-template>
+</mat-tab>
+
+<mat-tab label="Priority">
+  <ng-template matTabContent>
+    <div class="container">
+      <priority-list></priority-list>
+    </div>
+  </ng-template>
+</mat-tab>
+
+<mat-tab label="Status">
+  <ng-template matTabContent>
+    <div class="container">
+      <status-list></status-list>
+    </div>
+  </ng-template>
+</mat-tab>
+
+<mat-tab label="Type">
+  <ng-template matTabContent>
+    <div class="container">
+      <action-type-list></action-type-list>
+    </div>
+  </ng-template>
+</mat-tab>
+
+
+<!-- <mat-tab label="Analysis">
+  <ng-template matTabContent>
+    <div class="container">
+      <kanban-dashboard></kanban-dashboard>
+    </div>
+  </ng-template>
+</mat-tab> -->
+
+</mat-tab-group>
+

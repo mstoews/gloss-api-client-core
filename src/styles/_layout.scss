@@ -1,0 +1,23 @@
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+.logo {
+  float: left;
+  font-size: 1.2em;
+  padding: 1px;
+  margin: 1px;
+  cursor: pointer;
+  outline: none;
+  height: 5rem;
+  width: 4rem;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-size: 80% auto;
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  background-image: url(../assets/img/broadridge.jpeg);
+}
+

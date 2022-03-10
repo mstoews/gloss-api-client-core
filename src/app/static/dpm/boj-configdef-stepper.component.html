@@ -1,0 +1,47 @@
+<app-menubar (notifyParentSend)="onSend()" (notifyParentRefresh)="onRefresh()" inTitle="{{ outTitle }}">
+</app-menubar>
+<div *ngIf="loading == true">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="loading == false">
+  <form [formGroup]="formGroup">
+    <mat-accordion multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            BOJPS Config
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>Bi-Lateral netting at financial institution level</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="FIIDCPTYSECP" (selectionChange)="updateFIIDCPTYSECPConfig()">
+                <mat-option *ngFor="let code of ynCodes" [value]="code.code_value">
+                  {{code.code_descr}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>Four eyes verfication sources</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="VERIFICATIONVERISRCS" multiple
+                (selectionChange)="updateVERIFICATIONVERISRCSConfig()">
+                <mat-option value="TE">TE</mat-option>
+                <mat-option value="TST">TST</mat-option>
+                <mat-option value="EXCEL">EXCEL</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
+</div>

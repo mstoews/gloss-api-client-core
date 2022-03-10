@@ -1,0 +1,17 @@
+<nav
+    [@divState]="state"
+    (@divState.start)="animationStarted($event)"
+    (@divState.done)="animationEnded($event)">
+
+    <mat-toolbar>
+      <span class="fill-space">MAIN MENU</span>
+    </mat-toolbar>
+        
+    <ul class="side-nav">
+        
+      <mat-nav-list>
+        <app-nav-list-item *ngFor="let item of navItems" [item]="item"></app-nav-list-item>
+      </mat-nav-list>
+   </ul>
+   <div class="legal">&copy; 2021 Broadridge Financial Solutions, Inc.</div>
+</nav>

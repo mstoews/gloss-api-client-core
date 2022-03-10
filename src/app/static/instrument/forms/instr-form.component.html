@@ -1,0 +1,77 @@
+<mat-tab-group 
+#tabGroup 
+mat-align-tabs="start" 
+(selectedTabChange)="onTabClick($event)" 
+animationDuration="500ms"
+>
+  <mat-tab label="Client Setup">
+    <ng-template matTabContent>
+    <div class="container" *ngIf="!post; else forminfo" novalidate>
+      <app-party-type></app-party-type>
+    </div>
+  </ng-template>
+  </mat-tab>
+
+   <mat-tab label="Reference"> 
+    <ng-template matTabContent>
+    <div class="container" *ngIf="!post; else forminfo" novalidate>
+      <app-party-ref></app-party-ref>
+    </div>
+  </ng-template>
+  </mat-tab>
+
+   <mat-tab label="Classifications">
+    <ng-template matTabContent>
+    <div class="container" *ngIf="!post; else forminfo" novalidate>
+      <app-classifications></app-classifications>
+    </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Flags">
+    <ng-template matTabContent>
+    <div class="container" *ngIf="!post; else forminfo" novalidate>
+      <party-flag></party-flag>
+    </div>
+  </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Association">
+    <ng-template matTabContent>
+    <div class="container" *ngIf="!post; else forminfo" novalidate>
+      <app-party-assoc></app-party-assoc>
+    </div>
+  </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Instruments">
+    <ng-template matTabContent>
+    <div class="container" *ngIf="!post; else forminfo" novalidate>
+      <app-party-instr></app-party-instr>
+    </div>
+  </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Narrative">
+    <ng-template matTabContent>
+    <div class="container" *ngIf="!post; else forminfo" novalidate>
+      <app-party-narr></app-party-narr>
+    </div>
+  </ng-template>
+  </mat-tab>
+
+  <mat-tab label="SSI">
+    <ng-template matTabContent>
+    <div class="container" *ngIf="!post; else forminfo" novalidate>
+      <app-party-ssi></app-party-ssi>
+    </div>
+  </ng-template>
+    </mat-tab>
+</mat-tab-group> 
+
+<ng-template #forminfo>
+  <div class="container">
+    {{ post | json }}
+  </div>
+</ng-template>
+

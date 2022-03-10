@@ -1,0 +1,60 @@
+<div class="mat-card-parent"></div>
+<mat-card>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-form-field
+      class="login-field"
+      [color]="backendport.valid && 'accent'"
+      *ngIf="enablePortInput() == true"
+    >
+      <input
+        matInput
+        formControlName="backendport"
+        placeholder="Backend Port"
+        autocomplete="off"
+      />
+      <button mat-raised-button color="accent" (click)="storeBackendURI()">
+        Set Port
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="login-field" [color]="userid.valid && 'accent'">
+      <input
+        matInput
+        formControlName="userid"
+        placeholder="User ID"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="login-field" [color]="userid.valid && 'accent'">
+      <input
+        matInput
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+        autocomplete="off"
+      />
+
+      <mat-error *ngIf="password.invalid && password.dirty">
+        Password must be at least 6 characters long
+      </mat-error>
+    </mat-form-field>
+
+    <mat-error class="server-error">
+      {{ serverMessage }}
+    </mat-error>
+
+    <button
+      class="login-submit-button"
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="form.invalid || loading"
+    >
+      Login
+    </button>
+  </form>
+</mat-card>

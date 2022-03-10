@@ -1,0 +1,153 @@
+<app-menubar (notifyParentSend)="onSend()" (notifyParentRefresh)="onRefresh()" inTitle="{{ outTitle }}">
+</app-menubar>
+<div *ngIf="loading == true">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="loading == false">
+  <form [formGroup]="formGroup">
+    <mat-accordion multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            File Gateway
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>BFILEOUTCODE PROCCOMP</ng-template>
+            <mat-form-field>
+              <input matInput formControlName="BFILEOUTCODEPROC_COMP" (blur)="updateBFILEOUTCODEPROC_COMPConfig()" />
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>STATION FILE STATION CLIENT</ng-template>
+            <mat-form-field>
+              <input matInput formControlName="STATIONFILESTATION_CLIENT"
+                (blur)="updateSTATIONFILESTATION_CLIENTConfig()" />
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>ZENGIN FILE INDUSTRYID</ng-template>
+            <mat-form-field>
+              <input matInput formControlName="ZENGINFILEINDUSTRYID" (blur)="updateZENGINFILEINDUSTRYIDConfig()" />
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>ZENGIN FILE TRANSFERCODE</ng-template>
+            <mat-form-field>
+              <input matInput formControlName="ZENGINFILETRANSFERCODE" (blur)="updateZENGINFILETRANSFERCODEConfig()" />
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            PSMS Instruction Config
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <mat-form-field>
+              <ng-template matStepLabel>Adapter flag to set/unset SSI MT54X Generation</ng-template>
+              <mat-select formControlName="ADAPTERFLAGAUTO_SSI_MT54X_GENR"
+                (selectionChange)="updateADAPTERFLAGAUTO_SSI_MT54X_GENRConfig()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.code_value">
+                  {{code.code_descr}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>Adapter flag to set/unset critical amend check</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="ADAPTERFLAGCRITICAL_AMEND_CHECK"
+                (selectionChange)="updateADAPTERFLAGCRITICAL_AMEND_CHECKConfig()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.code_value">
+                  {{code.code_descr}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>Adapter flag to set/unset timing control check</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="ADAPTERFLAGTIMING_CONTROL_REQ"
+                (selectionChange)="updateADAPTERFLAGTIMING_CONTROL_REQConfig()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.code_value">
+                  {{code.code_descr}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Other Config
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-vertical-stepper #stepper>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>PSMS NonResiding Netting Value Date</ng-template>
+            <mat-form-field>
+              <input matInput formControlName="PSMSNRNETVDVALUE_DATE" (blur)="updatePSMSNRNETVDVALUE_DATEConfig()" />
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>Test bic for company</ng-template>
+            <mat-form-field>
+              <input matInput formControlName="DUMMY_BICBICXXXXXXXX" (blur)="updateDUMMY_BICBICXXXXXXXXConfig()" />
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="formGroup">
+            <ng-template matStepLabel>Stock Lending and Borrowing DVP INTM FLAG</ng-template>
+            <mat-form-field>
+              <mat-select formControlName="SLAB_DVPFLAGSDVP_INTM_FLAG"
+                (selectionChange)="updateSLAB_DVPFLAGSDVP_INTM_FLAGConfig()">
+                <mat-option *ngFor="let code of tfCodes" [value]="code.code_value">
+                  {{code.code_descr}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
+</div>

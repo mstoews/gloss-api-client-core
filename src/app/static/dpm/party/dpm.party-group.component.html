@@ -1,0 +1,57 @@
+<mat-tab-group #tabGroup (selectedTabChange)="onTabClick($event)">
+  <mat-tab label="Dpm Client">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-dpmparty-type componentType="{{ componentType }}"></app-dpmparty-type>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Dpm Reference">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-dpmparty-extref componentType="{{ componentType }}"></app-dpmparty-extref>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Dpm Flags">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-dpmparty-flag componentType="{{ componentType }}"></app-dpmparty-flag>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Dpm Account">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-dpmaccount-type componentType="{{ componentType }}"></app-dpmaccount-type>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Dpm Account Reference">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-dpmaccount-extref componentType="{{ componentType }}"></app-dpmaccount-extref>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Dpm Account Flag">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-dpmaccount-flag componentType="{{ componentType }}"></app-dpmaccount-flag>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Dpm Config Def">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-dpmconfig-def componentType="{{ componentType }}"></app-dpmconfig-def>
+      </div>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

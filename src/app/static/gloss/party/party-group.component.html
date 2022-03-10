@@ -1,0 +1,122 @@
+<mat-tab-group #tabGroup (selectedTabChange)="onTabClick($event)">
+  <mat-tab label="Client">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-type partyType={{party_type}}></app-party-type>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showreferencecomponent() label="Reference">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-extref></app-party-extref>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showclassificationscomponent() label="Classifications">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-classifications></app-classifications>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showflagcomponent() label="Flags">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-flag></app-party-flag>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=shownarrativecomponent() label="Narrative">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-narr></app-party-narr>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showassociationcomponent() label="Association">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-assoc></app-party-assoc>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showinstrumentscomponent() label="Instruments">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-instr></app-party-instr>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showssicomponent() label="SSI">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-ssi partyType={{party_type}}></app-party-ssi>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showdatecomponent() label="Date">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-date></app-party-date>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showaddresscomponent() label="Address">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-address></app-party-address>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showtemplatecomponent() label="Template">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-template></app-party-template>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showclassassoccomponent() label="Class Assoc">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-classassoc></app-party-classassoc>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showclassassoccomponent() label="Class Assoc Stepper">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-classassoc-stepper></app-party-classassoc-stepper>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=shownettingcomponent() label="Netting">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-netting></app-party-netting>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab *ngIf=showswiftcomponent() label="SWIFT">
+    <ng-template matTabContent>
+      <div class="container">
+        <app-party-swift></app-party-swift>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+</mat-tab-group>

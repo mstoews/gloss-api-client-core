@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+metadata:
+  name: glossapiclients
+build:
+  artifacts:
+  - image: docker.io/mstoews/gloss-api-backend_nest-api
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/local-volumes.yaml
+    - k8s/postgres-service.yaml
+    - k8s/postgres-state.yaml
+    - k8s/postgres-storage.yaml
+    - k8s/postgres.configmap.yaml
+    - k8s/postgres.yaml
+    - k8s/storage-class.yaml
+    - k8s/postgres/pg-config.yaml
+    - k8s/postgres/pg-service.yaml
+    - k8s/postgres/pg-stateful.yaml

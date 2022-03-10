@@ -1,0 +1,36 @@
+<div class="content-block">
+    <div class="dx-card responsive-paddings">
+        <dx-data-grid *ngIf="kanbanList | async as rows" (onSaving)="logEvent('Saving')" (onSaved)="logEvent('Saved')"
+            (onEditCanceling)="logEvent('EditCanceling')" (onEditCanceled)="logEvent('EditCanceled')"
+            (onCellDblClick)="onRowDblClick($event)"
+            (onEditingStart)="logEvent('EditingStart')"
+            (onInitNewRow)="logEvent('InitNewRow')"
+            (onRowInserting)="logEvent('RowInserting')"
+            (onRowInserted)="logEvent('RowInserted')"
+            (onRowUpdating)="logEvent('RowUpdating')"
+            (onRowUpdated)="logEvent('RowUpdated')"
+            (onRowRemoving)="logEvent('RowRemoving')"
+            (onRowRemoved)="logEvent('RowRemoved')"
+            (onSaving)="logEvent('Saving')"
+            (onSaved)="logEvent('Saved')"
+            (onEditCanceling)="logEvent('EditCanceling')"
+            (onEditCanceled)="logEvent('EditCanceled')"
+            keyExpr="party_ref" [dataSource]="rows" [showBorders]="false" [focusedRowEnabled]="true"
+            [focusedRowIndex]="0" [columnAutoWidth]="true">
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-paging [pageSize]="20"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+            <dxo-filter-row [visible]="false"></dxo-filter-row>
+            <!-- <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+            </dxo-editing> -->
+
+            <dxi-column dataField="party_ref" caption="Party" [width]="90" [hidingPriority]="2"> </dxi-column>
+            <dxi-column dataField="party_type" caption="Type" [width]="90" [hidingPriority]="1"> </dxi-column>
+            <dxi-column dataField="party_short_name" caption="Short Name" [width]="200" [hidingPriority]="1"> </dxi-column>
+            <dxi-column dataField="party_long_name" caption="Long Name" [width]="300" [hidingPriority]="1"> </dxi-column>
+            <dxi-column dataField="party_extra_long_name" caption="Description" [hidingPriority]="1"> </dxi-column>
+            <dxi-column dataField="version_date" caption="Date" dataType="date" [width]="100" [hidingPriority]="1"> </dxi-column>
+            <dxi-column dataField="version_user" caption="User" [width]="100" [hidingPriority]="1"> </dxi-column>
+        </dx-data-grid>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  client-api:
+    container_name: gloss-api-client
+    restart: always
+    build:
+      context: .      
+      dockerfile: Dockerfile
+    ports:
+      - 4332:80
+    networks:
+      - gloss-api-client_default
+networks:
+  gloss-api-client_default:     
+    name: gloss-api-client_default
+  

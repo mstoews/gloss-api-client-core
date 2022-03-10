@@ -1,0 +1,27 @@
+
+
+svg {
+    width: 25px;
+    height: 25px;
+  }
+
+svg:hover {
+    fill: rgb(16, 17, 17);
+  }
+
+a:hover {
+  background: linear-gradient(135deg, #a9b9e5 15%,#00578E 100%);
+  background-color: 	#00578E;
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2a9e5', endColorstr='#2b94e5',GradientType=1 );
+}
+
+
+.mat-toolbar {
+  background-color:  var(--color-grey-dark-1);
+  background-size: cover;
+  color: rgb(255, 255, 255);
+  height: 6rem;
+  transition: width 600ms ease;
+}
+
